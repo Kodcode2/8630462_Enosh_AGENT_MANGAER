@@ -1,6 +1,6 @@
 ﻿namespace AgentRest.Utils
 {
-    public class DistanceCalculation
+    public static class DistanceCalculation
     {
         // Calculate the distance between the two points.
         public static double CalculateDistance(int agentX, int agentY, int targetX, int targetY) =>

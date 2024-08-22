@@ -13,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IAgentServis, AgentServis>(); // to add servis
+builder.Services.AddScoped<ITargetServis, TargetServis>(); // to add servis
+builder.Services.AddScoped<IMissionServis, MissionServis>(); // to add servis
 
 builder.Services.AddHttpClient(); // to add Http Client
 

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgentRest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240821133153_InitialCreate")]
+    [Migration("20240822061700_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -40,8 +40,9 @@ namespace AgentRest.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("locationX")
                         .HasColumnType("int");
@@ -106,8 +107,9 @@ namespace AgentRest.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("locationX")
                         .HasColumnType("int");
@@ -123,7 +125,7 @@ namespace AgentRest.Migrations
             modelBuilder.Entity("AgentRest.Models.MissionModel", b =>
                 {
                     b.HasOne("AgentRest.Models.AgentModel", "Agent")
-                        .WithMany()
+                        .WithMany("Missions")
                         .HasForeignKey("AgentId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -137,6 +139,11 @@ namespace AgentRest.Migrations
                     b.Navigation("Agent");
 
                     b.Navigation("Target");
+                });
+
+            modelBuilder.Entity("AgentRest.Models.AgentModel", b =>
+                {
+                    b.Navigation("Missions");
                 });
 #pragma warning restore 612, 618
         }

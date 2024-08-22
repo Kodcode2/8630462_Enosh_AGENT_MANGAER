@@ -18,9 +18,20 @@ namespace AgentRest.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AgentModel>()
+                .Property(a => a.Status)
+                .HasConversion<string>()
+                .IsRequired();
+
+            modelBuilder.Entity<TargetModel>()
+                .Property(a => a.Status)
+                .HasConversion<string>()
+                .IsRequired();
+
+
             modelBuilder.Entity<MissionModel>()
                 .HasOne(m => m.Agent)
-                .WithMany()
+                .WithMany(a => a.Missions)
                 .HasForeignKey(m => m.AgentId)
                 .OnDelete(DeleteBehavior.Restrict); // מחיקה מקושרת
 
@@ -29,6 +40,7 @@ namespace AgentRest.Data
                 .WithMany()
                 .HasForeignKey(m => m.TargetId)
                 .OnDelete(DeleteBehavior.Restrict); // מחיקה מקושרת
+
 
             base.OnModelCreating(modelBuilder);
         }

@@ -20,7 +20,7 @@ namespace AgentRest.Migrations
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     locationX = table.Column<int>(type: "int", nullable: false),
                     locationY = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,7 +38,7 @@ namespace AgentRest.Migrations
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     locationX = table.Column<int>(type: "int", nullable: false),
                     locationY = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
