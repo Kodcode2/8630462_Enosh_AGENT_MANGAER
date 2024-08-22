@@ -6,8 +6,11 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AgentRest.Servise
 {
-    public class MissionServis(ApplicationDbContext context) : IMissionServis
+    public class MissionServis(ApplicationDbContext context, IServiceProvider serviceProvider) : IMissionServis
     {
+        private IAgentServis agentService = serviceProvider.GetRequiredService<IAgentServis>();
+        private ITargetServis targetService = serviceProvider.GetRequiredService<ITargetServis>();
+
         public async Task<List<MissionModel>> GetAllMissionsAsync(TokenDto token) =>
         await context.Missions.ToListAsync();
 
@@ -34,7 +37,7 @@ namespace AgentRest.Servise
 
         //public async Task<MissionModel> CreateMission()
         //{
-
+            
         //}
     }
 }

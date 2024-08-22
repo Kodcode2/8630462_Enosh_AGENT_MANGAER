@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgentRest.Controllers
 {
-    [Route("api/missions")]
+    [Route("[controller]")]
     [ApiController]
-    public class MissionController(IMissionServis missionServis) : ControllerBase
+    public class MissionsController(IMissionServis missionServis) : ControllerBase
     {
+        
         [HttpGet]
         public async Task<ActionResult<List<MissionModel>>> GetAll([FromBody] TokenDto token) => Ok(await missionServis.GetAllMissionsAsync(token));
 

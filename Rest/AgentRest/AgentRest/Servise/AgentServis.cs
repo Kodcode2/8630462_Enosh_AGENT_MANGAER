@@ -77,7 +77,10 @@ namespace AgentRest.Servise
                 throw new Exception($"Location Not booted yet");
 
             if (!WalkingCoordinates.Any(x => x.Key == direction))
-                throw new Exception($"There is no {direction} walking function");
+                throw new Exception($"There is no {direction} walking function"); 
+
+            if (agentIsExsist.Status == AgentStatus.Operations)
+                throw new Exception($"The agent is operations");
 
             agentIsExsist.locationX += WalkingCoordinates.First(x => x.Key == direction).Value.x;
             agentIsExsist.locationY += WalkingCoordinates.First(x => x.Key == direction).Value.y;
