@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgentRest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/agent")]
     [ApiController]
     public class AgentController(IAgentServis agentServis) : ControllerBase
     {

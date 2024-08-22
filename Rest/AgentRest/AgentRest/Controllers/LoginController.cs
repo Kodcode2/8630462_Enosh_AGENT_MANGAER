@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgentRest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/login")]
     [ApiController]
     public class LoginController : ControllerBase
     {

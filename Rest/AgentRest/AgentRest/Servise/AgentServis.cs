@@ -42,6 +42,10 @@ namespace AgentRest.Servise
             {
                 throw new Exception($"Agent with the {id} does not exist");
             }
+
+            if (location.x < 0 || location.y < 0)
+                throw new Exception("illegal place");
+
             agentIsExsist.locationX = location.x;
             agentIsExsist.locationY = location.y;
 
@@ -77,6 +81,9 @@ namespace AgentRest.Servise
 
             agentIsExsist.locationX += WalkingCoordinates.First(x => x.Key == direction).Value.x;
             agentIsExsist.locationY += WalkingCoordinates.First(x => x.Key == direction).Value.y;
+
+            if (agentIsExsist.locationX == -1 || agentIsExsist.locationX == 1001 || agentIsExsist.locationY == -1 || agentIsExsist.locationY == 1001)
+                throw new Exception("It is not possible to run outside the formation");
 
             await context.SaveChangesAsync();
             return agentIsExsist;

@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgentRest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/target")]
     [ApiController]
     public class TargetController(ITargetServis targetServis) : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<List<TargetModel>>> GetAll() => Ok(await targetServis.GetAllTargetsAsync());
+        public async Task<ActionResult<List<TargetModel>>> GetAll([FromBody] TokenDto token) => Ok(await targetServis.GetAllTargetsAsync(token));
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
