@@ -13,7 +13,7 @@ namespace AgentRest.Servise
         public async Task<List<AgentModel>> GetAllAgentsAsync() =>
            await context.Agents.ToListAsync();
 
-        public async Task<int?> CreateAgentAsync(AgentDto agent)
+        public async Task<ResIdDto?> CreateAgentAsync(AgentDto agent)
         {
             var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Name == agent.Nickname);
 
@@ -24,13 +24,13 @@ namespace AgentRest.Servise
             AgentModel agentModel = new()
             {
                 Name = agent.Nickname,
-                Image = agent.Photo_url,
+                Image = agent.PhotoUrl,
                 Status = AgentStatus.Dormant
             };
             await context.Agents.AddAsync(agentModel);
             await context.SaveChangesAsync();
 
-            return agentModel.Id;
+            return new () { Id = agentModel.Id };
         }
 
         // Change of location according to id

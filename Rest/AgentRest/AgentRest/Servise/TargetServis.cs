@@ -10,7 +10,7 @@ namespace AgentRest.Servise
         public async Task<List<TargetModel>> GetAllTargetsAsync(TokenDto token) =>
             await context.Targets.ToListAsync();
 
-        public async Task<int?> CreateTargetAsync(TargetDto target)
+        public async Task<ResIdDto?> CreateTargetAsync(TargetDto target)
         {
             var targetIsExsist = await context.Targets.FirstOrDefaultAsync(x => x.Name == target.Name);
 
@@ -22,12 +22,12 @@ namespace AgentRest.Servise
             {
                 Name = target.Name,
                 Role = target.Position,
-                Image = target.Photo_url
+                Image = target.PhotoUrl
             };
             await context.Targets.AddAsync(targetModel);
             await context.SaveChangesAsync();
 
-            return targetModel.Id;
+            return new() { Id = targetModel.Id };
         }
 
         // Change of location according to id

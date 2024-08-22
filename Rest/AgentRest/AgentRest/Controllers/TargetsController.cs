@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgentRest.Controllers
 {
-    [Route("api/target")]
+    [Route("[controller]")]
     [ApiController]
-    public class TargetController(ITargetServis targetServis) : ControllerBase
+    public class TargetsController(ITargetServis targetServis) : ControllerBase
     {
         [HttpGet]
         public async Task<ActionResult<List<TargetModel>>> GetAll([FromBody] TokenDto token) => Ok(await targetServis.GetAllTargetsAsync(token));
@@ -17,7 +17,7 @@ namespace AgentRest.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // The request returns a status of 200 because, according to the characterization, the created ID should be returned.
-        public async Task<ActionResult<int>> CreateTarget([FromBody] TargetDto model)
+        public async Task<ActionResult<ResIdDto>> CreateTarget([FromBody] TargetDto model)
         {
             try
             {
@@ -32,32 +32,37 @@ namespace AgentRest.Controllers
 
         [HttpPut("{id}/pin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AgentModel>> StartPin(int id, [FromBody] LocationDto location)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> StartPin(int id, [FromBody] LocationDto location)
         {
             try
             {
-                return Ok(await targetServis.CreateLocationAsync(id, location));
+                var targetModel = await targetServis.CreateLocationAsync(id, location);
+                if (targetModel == null)
+                {
+                    return NotFound();
+                }
+                return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
-
         }
 
         [HttpPut("{id}/move")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AgentModel>> Walking(int id, [FromBody] DirectionDto direction)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> Walking(int id, [FromBody] DirectionDto direction)
         {
             try
             {
-                return Ok(await targetServis.MovementAsync(id, direction.Direction));
+                var targetModel = await targetServis.MovementAsync(id, direction.direction);
+                return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
 
         }
