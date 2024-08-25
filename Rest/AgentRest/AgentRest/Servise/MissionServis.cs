@@ -5,6 +5,7 @@ using AgentRest.Utils;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 
 namespace AgentRest.Servise
@@ -39,9 +40,12 @@ namespace AgentRest.Servise
                 };
                 if (missionIsExsist.Status == MissionStatus.Mitzvah)
                 {
+                    // change status of agent.
                     var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Id == missionIsExsist.AgentId);
                     agentIsExsist!.Status = AgentStatus.Operations;
-                    // ------------------------------------------------- add -------------------------------------
+
+                    // Calculation of time according to Id.
+                    missionIsExsist.TimeLeft = await CalculationOfTime(missionIsExsist.AgentId, missionIsExsist.TargetId);
                 }
                 await context.SaveChangesAsync();
                 return missionIsExsist;
@@ -75,8 +79,10 @@ namespace AgentRest.Servise
                     agentIsExsist!.Status = AgentStatus.Dormant;
                     targetIsExsist!.Status = TargetStatus.Destroyed;
                     mission.Status = MissionStatus.Ended;
+                    mission.TimeRight = await CalculationOfTime(mission.AgentId, mission.TargetId);
                 }
-                await context.SaveChangesAsync();
+                mission.TimeLeft -= 0.0005;
+               await context.SaveChangesAsync();
                 // Remaining time update
                 //mission.TimeLeft = DistanceCalculation.CalculationOperationTime(calculateDistance);
             }
@@ -93,23 +99,33 @@ namespace AgentRest.Servise
             return [agentIsExsist.locationX, agentIsExsist.locationY, targetIsExsist.locationX, targetIsExsist.locationY];
         }
 
+        // Calculation of time according to Id.
+        private async Task<double> CalculationOfTime(int agentId, int targetId)
+        {
+            var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Id == agentId);
+            var targetIsExsist = await context.Targets.FirstOrDefaultAsync(x => x.Id == targetId);
+            if (agentIsExsist == null || targetIsExsist == null)
+                return -1;
+            return DistanceCalculation
+                .CalculationOperationTime(DistanceCalculation
+                .CalculateDistance(agentIsExsist.locationX, agentIsExsist.locationY, targetIsExsist.locationX, targetIsExsist.locationY));
+        }
+
 
         // Stopwatch function
-        private async Task MakingPizza(Dictionary<string, int> dic)
-        {
-            CancellationTokenSource cts = new();
-            foreach (var oneDic in dic)
-            {
-                int tamp = oneDic.Value;
-                using PeriodicTimer periodicTimer = new(TimeSpan.FromSeconds(1));
-                while (await periodicTimer.WaitForNextTickAsync(cts.Token) && tamp >= 0)
-                {
-                    Console.WriteLine($"making {oneDic.Key}: {tamp}");
-                    tamp--;
-                }
-                Console.WriteLine($"finished {oneDic.Key}");
-            }
-        }
+        //private async Task StopwatchToTimeLeft(MissionModel missionModel)
+        //{
+        //    var missionIsExsist = await context.Missions.FirstOrDefaultAsync(x => x.Id == missionModel.Id);
+        //    CancellationTokenSource cts = new();
+        //    using PeriodicTimer periodicTimer = new(TimeSpan.FromSeconds(5));
+        //    double tamp = missionIsExsist!.TimeLeft;
+
+        //    while (await periodicTimer.WaitForNextTickAsync(cts.Token) && tamp >= 0)
+        //    {
+        //        Console.WriteLine($"time left for the {missionModel.Id}: {tamp}");
+        //        tamp -= 0.0005;
+        //    }
+        //}
 
 
     }
