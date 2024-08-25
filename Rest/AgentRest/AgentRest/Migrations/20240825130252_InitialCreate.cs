@@ -53,8 +53,8 @@ namespace AgentRest.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AgentId = table.Column<int>(type: "int", nullable: false),
                     TargetId = table.Column<int>(type: "int", nullable: false),
-                    TimeLeft = table.Column<float>(type: "real", nullable: false),
-                    TimeRight = table.Column<float>(type: "real", nullable: false),
+                    TimeLeft = table.Column<double>(type: "float", nullable: false),
+                    TimeRight = table.Column<double>(type: "float", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

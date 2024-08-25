@@ -29,6 +29,11 @@ namespace AgentRest.Data
                 .IsRequired();
 
 
+            //modelBuilder.Entity<MissionModel>()
+            //    .Property(a => a.Status)
+            //    .HasConversion<string>()
+            //    .IsRequired();
+
             modelBuilder.Entity<MissionModel>()
                 .HasOne(m => m.Agent)
                 .WithMany(a => a.Missions)

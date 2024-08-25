@@ -7,5 +7,6 @@ namespace AgentRest.Servise
     {
         Task<List<MissionModel>> GetAllMissionsAsync(TokenDto token);
         Task<MissionModel> TaskUpdateStatus(int id, MissionDto mission);
+        Task<int> CreateMissionAsync();
     }
 }

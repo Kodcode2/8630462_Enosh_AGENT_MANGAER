@@ -17,11 +17,12 @@ namespace AgentRest.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AgentModel>> UpdetStatusMissions(int id, [FromBody] MissionDto mission)
+        public async Task<ActionResult> UpdetStatusMissions(int id, [FromBody] MissionDto mission)
         {
             try
             {
-                return Ok(await missionServis.TaskUpdateStatus(id, mission));
+                var activatingTheFunction = await missionServis.TaskUpdateStatus(id, mission);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -29,6 +30,21 @@ namespace AgentRest.Controllers
             }
         }
 
+        [HttpPost("update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> UpdetStatusMissions()
+        {
+            try
+            {
+                var activatingTheFunction = await missionServis.CreateMissionAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

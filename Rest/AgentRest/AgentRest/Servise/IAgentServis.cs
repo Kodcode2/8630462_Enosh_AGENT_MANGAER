@@ -9,5 +9,6 @@ namespace AgentRest.Servise
         Task<ResIdDto?> CreateAgentAsync(AgentDto agent);
         Task<AgentModel?> CreateLocationAsync(int id, LocationDto location);
         Task<AgentModel?> MovementAsync(int id, string direction);
+        Task<AgentModel?> MoveToTargetAsync(int id, string direction);
     }
 }

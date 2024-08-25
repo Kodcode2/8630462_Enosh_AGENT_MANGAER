@@ -4,10 +4,8 @@ using AgentRest.Models;
 using AgentRest.Utils;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Microsoft.SqlServer.Server;
-using System.Collections.Generic;
-using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel.DataAnnotations;
 
 namespace AgentRest.Servise
 {
@@ -16,42 +14,46 @@ namespace AgentRest.Servise
         private IAgentServis agentService => serviceProvider.GetRequiredService<IAgentServis>();
         private ITargetServis targetService => serviceProvider.GetRequiredService<ITargetServis>();
 
-        
+
 
         public async Task<List<MissionModel>> GetAllMissionsAsync(TokenDto token) =>
         await context.Missions.ToListAsync();
 
         public async Task<MissionModel> TaskUpdateStatus(int id, MissionDto mission)
         {
-            var missionIsExsist = await context.Missions.FirstOrDefaultAsync(x => x.Id == id);
-
-            if (missionIsExsist == null)
+            try
             {
-                throw new Exception($"Agent with the {id} does not exist");
+                var missionIsExsist = await context.Missions.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (missionIsExsist == null)
+                {
+                    throw new Exception($"Agent with the {id} does not exist");
+                }
+
+                missionIsExsist.Status = mission.Status switch
+                {
+                    "proposal" => MissionStatus.Proposal,
+                    "mitzvah" => MissionStatus.Mitzvah,
+                    "ended" => MissionStatus.Ended,
+                    _ => throw new Exception($"Invalid value {mission.Status}")
+                };
+                if (missionIsExsist.Status == MissionStatus.Mitzvah)
+                {
+                    var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Id == missionIsExsist.AgentId);
+                    agentIsExsist!.Status = AgentStatus.Operations;
+                    // ------------------------------------------------- add -------------------------------------
+                }
+                await context.SaveChangesAsync();
+                return missionIsExsist;
             }
-
-            missionIsExsist.Status = mission.Status switch
+            catch (Exception ex)
             {
-                "proposal" => MissionStatus.Proposal,
-                "mitzvah" => MissionStatus.Mitzvah,
-                "ended" => MissionStatus.Ended,
-                _ => throw new Exception($"Invalid value {mission.Status}")
-            };
-
-            await context.SaveChangesAsync();
-            return missionIsExsist;
+                throw new Exception(ex.ToString());
+            }
         }
-        
+
         public async Task<int> CreateMissionAsync()
         {
-            //foreach (var agents in await context.Agents.ToListAsync())
-            //{
-            //    var dscds = await context.Targets
-            //    .Where(x => DistanceCalculation
-            //    .CalculateDistance(agents.locationX, agents.locationY, x.locationX, x.locationY) < 200);
-               
-            //}
-
             // Running on all existing tasks.
             foreach (MissionModel mission in await context.Missions
                 .Where(x => x.Status == MissionStatus.Mitzvah)
@@ -60,22 +62,23 @@ namespace AgentRest.Servise
                 // Returning a list of locations
                 var locationByID = await LocationByID(mission.AgentId, mission.TargetId);
 
-                // Distance calculation
-                var calculateDistance = DistanceCalculation.CalculateDistance(locationByID[0], locationByID[1], locationByID[2], locationByID[3]);
+                // Agents walking towards the tasks
+                var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Id == mission.AgentId);
+                string directionForAgents = DistanceCalculation.WhichDirection(locationByID[0], locationByID[1], locationByID[2], locationByID[3]);
+                await agentService.MoveToTargetAsync(agentIsExsist!.Id, directionForAgents);
 
                 // Checking whether the Agent and the Target are in the same place.
                 // If so, update the status.
-                if (calculateDistance > 0)
+                if (locationByID[0] == locationByID[2] && locationByID[1] == locationByID[3])
                 {
-                    var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Id == mission.AgentId);
                     var targetIsExsist = await context.Targets.FirstOrDefaultAsync(x => x.Id == mission.TargetId);
                     agentIsExsist!.Status = AgentStatus.Dormant;
                     targetIsExsist!.Status = TargetStatus.Destroyed;
                     mission.Status = MissionStatus.Ended;
                 }
-
+                await context.SaveChangesAsync();
                 // Remaining time update
-                mission.TimeLeft = DistanceCalculation.CalculationOperationTime(calculateDistance);
+                //mission.TimeLeft = DistanceCalculation.CalculationOperationTime(calculateDistance);
             }
             return 1;
         }
@@ -107,5 +110,7 @@ namespace AgentRest.Servise
                 Console.WriteLine($"finished {oneDic.Key}");
             }
         }
+
+
     }
 }

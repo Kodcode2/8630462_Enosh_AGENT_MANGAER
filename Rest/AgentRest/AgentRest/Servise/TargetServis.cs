@@ -1,6 +1,7 @@
 ﻿using AgentRest.Data;
 using AgentRest.Dto;
 using AgentRest.Models;
+using AgentRest.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace AgentRest.Servise
@@ -44,6 +45,8 @@ namespace AgentRest.Servise
             targetIsExsist.locationX = location.x;
             targetIsExsist.locationY = location.y;
 
+            await CheckingTasks(targetIsExsist);
+
             await context.SaveChangesAsync();
 
             return targetIsExsist;
@@ -66,24 +69,58 @@ namespace AgentRest.Servise
         {
             var targetIsExsist = await context.Targets.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (targetIsExsist == null)
-                throw new Exception($"Targets with the {id} does not exist");
+            Validator<TargetModel>.Of(targetIsExsist)
+                .Validate(a => a != null, $"Targets with the {id} does not exist")
+                .Validate(a => a!.locationX != -1, $"Location Not booted yet")
+                .Validate<Dictionary<string, (int, int)>>(d => d.Any(x => x.Key == direction), WalkingCoordinates, $"There is no {direction} walking function")
+                .ThrowFirst();
 
-            if (targetIsExsist.locationX == -1)
-                throw new Exception($"Location Not booted yet");
-
-            if (!WalkingCoordinates.Any(x => x.Key == direction))
-                throw new Exception($"There is no {direction} walking function");
-
-            targetIsExsist.locationX += WalkingCoordinates.First(x => x.Key == direction).Value.x;
-            targetIsExsist.locationY += WalkingCoordinates.First(x => x.Key == direction).Value.y;
+            targetIsExsist!.locationX += WalkingCoordinates.First(x => x.Key == direction).Value.x;
+            targetIsExsist!.locationY += WalkingCoordinates.First(x => x.Key == direction).Value.y;
 
             if (targetIsExsist.locationX == -1 || targetIsExsist.locationX == 1001 || targetIsExsist.locationY == -1 || targetIsExsist.locationY == 1001)
                 throw new Exception("It is not possible to run outside the formation");
 
+            await CheckingTasks(targetIsExsist);
+
             await context.SaveChangesAsync();
 
             return targetIsExsist;
+        }
+
+        // Test to create a Mission
+        private async Task<TargetModel> CheckingTasks(TargetModel targetModel)
+        {
+            // Running on each agent separately to check the distance from the target
+            foreach (var agent in await context.Agents.ToListAsync())
+            {
+                var distanceCalculation = DistanceCalculation.CalculateDistance(agent.locationX, agent.locationY, targetModel.locationX, targetModel.locationY);
+                if (distanceCalculation < 200)
+                {
+                    // If the task already exists, continue to the next agent
+                    if (await context.Missions.FirstOrDefaultAsync(x => x.AgentId == agent.Id && x.TargetId == targetModel.Id) != null)
+                        continue;
+
+                    // Create a new task
+                    MissionModel newMission = new()
+                    {
+                        AgentId = agent.Id,
+                        TargetId = targetModel.Id,
+                        Status = MissionStatus.Proposal,
+                    };
+                    await context.Missions.AddAsync(newMission);
+                }
+
+                // There is an existing task where there is not enough distance to perform a deletion.
+                else
+                {
+                    var existingTask = await context.Missions.FirstOrDefaultAsync(x => x.AgentId == agent.Id && x.TargetId == targetModel.Id);
+                    if (existingTask != null)
+                        context.Missions.Remove(existingTask);
+                }
+            }
+            // The return of the object (it is not really necessary but probably for future use).
+            return targetModel;
         }
     }
 }
