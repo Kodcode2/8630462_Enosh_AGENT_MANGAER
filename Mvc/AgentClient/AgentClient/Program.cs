@@ -1,7 +1,15 @@
+using AgentClient.Servise;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient(); // Added Http Client
+builder.Services.AddScoped<IAgentServis, AgentServis>(); // to add servis
+
+// builder.Services.AddSingleton<Authentication>(); // AddSingleton -------------------
+
 
 var app = builder.Build();
 
@@ -12,6 +20,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

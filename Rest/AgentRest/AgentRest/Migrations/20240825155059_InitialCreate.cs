@@ -55,7 +55,7 @@ namespace AgentRest.Migrations
                     TargetId = table.Column<int>(type: "int", nullable: false),
                     TimeLeft = table.Column<double>(type: "float", nullable: false),
                     TimeRight = table.Column<double>(type: "float", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

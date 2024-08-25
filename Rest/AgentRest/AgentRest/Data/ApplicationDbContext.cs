@@ -18,21 +18,23 @@ namespace AgentRest.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // For the enam will be displayed as the name
             modelBuilder.Entity<AgentModel>()
                 .Property(a => a.Status)
                 .HasConversion<string>()
                 .IsRequired();
 
+            // For the enam will be displayed as the name
             modelBuilder.Entity<TargetModel>()
                 .Property(a => a.Status)
                 .HasConversion<string>()
                 .IsRequired();
 
-
-            //modelBuilder.Entity<MissionModel>()
-            //    .Property(a => a.Status)
-            //    .HasConversion<string>()
-            //    .IsRequired();
+            // For the enam will be displayed as the name
+            modelBuilder.Entity<MissionModel>()
+                .Property(a => a.Status)
+                .HasConversion<string>()
+                .IsRequired();
 
             modelBuilder.Entity<MissionModel>()
                 .HasOne(m => m.Agent)

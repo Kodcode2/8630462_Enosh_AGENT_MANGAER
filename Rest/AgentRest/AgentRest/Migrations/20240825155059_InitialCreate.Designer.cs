@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgentRest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240825130252_InitialCreate")]
+    [Migration("20240825155059_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -66,8 +66,9 @@ namespace AgentRest.Migrations
                     b.Property<int>("AgentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TargetId")
                         .HasColumnType("int");
