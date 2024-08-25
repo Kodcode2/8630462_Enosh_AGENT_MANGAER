@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\controllers\\missionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\controllers\\missionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\servise\\agentservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\servise\\agentservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\servise\\missionservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\servise\\missionservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\controllers\\agentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\controllers\\agentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\utils\\distancecalculation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\utils\\distancecalculation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 279,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -36,10 +32,36 @@
               "RelativeDocumentMoniker": "AgentRest\\Servise\\MissionServis.cs",
               "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\MissionServis.cs",
               "RelativeToolTip": "AgentRest\\Servise\\MissionServis.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAYwAsAAABiAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAwCYAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T14:05:28.039Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AgentServis.cs",
+              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\AgentServis.cs",
+              "RelativeDocumentMoniker": "AgentRest\\Servise\\AgentServis.cs",
+              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\AgentServis.cs",
+              "RelativeToolTip": "AgentRest\\Servise\\AgentServis.cs",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAkwGUAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-25T07:52:55.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DistanceCalculation.cs",
+              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Utils\\DistanceCalculation.cs",
+              "RelativeDocumentMoniker": "AgentRest\\Utils\\DistanceCalculation.cs",
+              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Utils\\DistanceCalculation.cs",
+              "RelativeToolTip": "AgentRest\\Utils\\DistanceCalculation.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-25T06:10:28.551Z",
               "EditorCaption": ""
             },
             {
@@ -49,45 +71,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AgentsController.cs",
-              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Controllers\\AgentsController.cs",
-              "RelativeDocumentMoniker": "AgentRest\\Controllers\\AgentsController.cs",
-              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Controllers\\AgentsController.cs",
-              "RelativeToolTip": "AgentRest\\Controllers\\AgentsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T14:48:47.182Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Program.cs",
-              "RelativeDocumentMoniker": "AgentRest\\Program.cs",
-              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Program.cs",
-              "RelativeToolTip": "AgentRest\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T14:24:35.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MissionsController.cs",
-              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Controllers\\MissionsController.cs",
-              "RelativeDocumentMoniker": "AgentRest\\Controllers\\MissionsController.cs",
-              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Controllers\\MissionsController.cs",
-              "RelativeToolTip": "AgentRest\\Controllers\\MissionsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T14:07:47.141Z",
-              "EditorCaption": ""
             }
           ]
         }

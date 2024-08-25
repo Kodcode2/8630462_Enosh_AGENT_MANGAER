@@ -18,12 +18,15 @@ builder.Services.AddScoped<IMissionServis, MissionServis>(); // to add servis
 
 builder.Services.AddHttpClient(); // to add Http Client
 
+//builder.Services.AddSingleton<Authentication>(); // AddSingleton -------------------
+
+
 // for the Connection String
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    )
-);
+builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+}, ServiceLifetime.Scoped);
 
 var app = builder.Build();
 

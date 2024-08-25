@@ -13,18 +13,36 @@
         // Calculation of which direction the agent should go.
         public static string WhichDirection(int agentX, int agentY, int targetX, int targetY)
         {
-            string direction = string.Empty;
-            if (agentY > targetY)
-                direction += "n";
-            else if (agentY < targetY)
-                direction += "s";
+            string xDirectin = agentX switch
+            {
+                _ when agentX > targetX => "n",
+                _ when agentX < targetX => "s",
+                _ => string.Empty
+            };
 
-            if (agentX > targetX) 
-                direction += "w";
-            else if (agentX < targetX)
-                direction += "e";
+            string yDirectin = agentX switch
+            {
+                _ when agentY > targetY => "w",
+                _ when agentY < targetY => "e",
+                _ => string.Empty
+            };
 
-            return direction;
+            return $"{xDirectin}{yDirectin}";
+
+
+            //if (agentY > targetY)
+            //    direction += "n";
+            //else if (agentY < targetY)
+            //    direction += "s";
+
+            //if (agentX > targetX) 
+            //    direction += "w";
+            //else if (agentX < targetX)
+            //    direction += "e";
+
+            //return direction;
         }
+
+
     }
 }

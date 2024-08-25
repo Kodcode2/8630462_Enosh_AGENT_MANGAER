@@ -1,9 +1,12 @@
 ﻿using AgentRest.Data;
 using AgentRest.Dto;
 using AgentRest.Models;
+using AgentRest.Utils;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.SqlServer.Server;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace AgentRest.Servise
 {
@@ -70,26 +73,54 @@ namespace AgentRest.Servise
         {
             var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (agentIsExsist == null)
-                throw new Exception($"Agent with the {id} does not exist");
+            List<int> notAllowedRange = [-1, 1001];
 
-            if (agentIsExsist.locationX == -1)
-                throw new Exception($"Location Not booted yet");
+            Validator<AgentModel>.Of(agentIsExsist)
+                .Validate(a => a == null, $"Agent with the {id} does not exist")
+                .Validate(a => a!.locationX == -1, $"Location Not booted yet")
+                .Validate(a => a!.Status == AgentStatus.Operations, $"The agent is operations")
+                .Validate<Dictionary<string, (int, int)>>(d => !d.Any(x => x.Key == direction), WalkingCoordinates, $"There is no {direction} walking function")
+                .ThrowFirst();
 
-            if (!WalkingCoordinates.Any(x => x.Key == direction))
-                throw new Exception($"There is no {direction} walking function"); 
+            agentIsExsist!.locationX += WalkingCoordinates.First(x => x.Key == direction).Value.x;
+            agentIsExsist!.locationY += WalkingCoordinates.First(x => x.Key == direction).Value.y;
 
-            if (agentIsExsist.Status == AgentStatus.Operations)
-                throw new Exception($"The agent is operations");
-
-            agentIsExsist.locationX += WalkingCoordinates.First(x => x.Key == direction).Value.x;
-            agentIsExsist.locationY += WalkingCoordinates.First(x => x.Key == direction).Value.y;
-
-            if (agentIsExsist.locationX == -1 || agentIsExsist.locationX == 1001 || agentIsExsist.locationY == -1 || agentIsExsist.locationY == 1001)
+            if (notAllowedRange.Any(na => agentIsExsist.locationX == na || agentIsExsist.locationY == na))  
                 throw new Exception("It is not possible to run outside the formation");
+
+            await CheckingTasks(agentIsExsist);
 
             await context.SaveChangesAsync();
             return agentIsExsist;
+        }
+        private async Task<AgentModel> CheckingTasks(AgentModel agentModel)
+        {
+            foreach (var target in await context.Targets.ToListAsync())
+            {
+                var distanceCalculation = DistanceCalculation.CalculateDistance(agentModel.locationX, agentModel.locationY, target.locationX, target.locationY);
+                if (distanceCalculation < 200)
+                {
+                    if (await context.Missions.FirstOrDefaultAsync(x => x.AgentId == agentModel.Id && x.TargetId == target.Id) != null)
+                        continue;
+
+                    MissionModel newMission = new()
+                    {
+                        AgentId = agentModel.Id,
+                        TargetId = target.Id,
+                        Status = MissionStatus.Proposal,
+                    };
+                    await context.Missions.AddAsync(newMission);
+                }
+
+                // There is an existing task where there is not enough distance to perform a deletion.
+                else
+                {
+                    var existingTask = await context.Missions.FirstOrDefaultAsync(x => x.AgentId == agentModel.Id && x.TargetId == target.Id);
+                    if (existingTask != null)
+                        context.Missions.Remove(existingTask);
+                }
+            }
+            return agentModel;
         }
     }
 }
