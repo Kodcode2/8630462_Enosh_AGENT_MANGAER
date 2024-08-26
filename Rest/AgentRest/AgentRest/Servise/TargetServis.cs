@@ -3,6 +3,7 @@ using AgentRest.Dto;
 using AgentRest.Models;
 using AgentRest.Utils;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace AgentRest.Servise
 {
@@ -117,6 +118,13 @@ namespace AgentRest.Servise
                     var existingTask = await context.Missions.FirstOrDefaultAsync(x => x.AgentId == agent.Id && x.TargetId == targetModel.Id);
                     if (existingTask != null)
                         context.Missions.Remove(existingTask);
+                    
+                }
+
+                var forDelete = context.Missions.Where(x => x.AgentId == agent.Id && x.Status == MissionStatus.Proposal).ToList();
+                foreach (var item in forDelete)
+                {
+                    context.Missions.Remove(item);
                 }
             }
             // The return of the object (it is not really necessary but probably for future use).

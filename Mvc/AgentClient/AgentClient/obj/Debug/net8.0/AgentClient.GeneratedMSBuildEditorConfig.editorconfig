@@ -26,6 +26,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Stern\Desktop\8630462_Enosh_AGENT_MANGAER\Mvc\AgentClient\AgentClient
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Stern/Desktop/8630462_Enosh_AGENT_MANGAER/Mvc/AgentClient/AgentClient/Views/Dashboards/AgentStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xBZ2VudFN0YXR1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Stern/Desktop/8630462_Enosh_AGENT_MANGAER/Mvc/AgentClient/AgentClient/Views/Dashboards/General.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xHZW5lcmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Stern/Desktop/8630462_Enosh_AGENT_MANGAER/Mvc/AgentClient/AgentClient/Views/Dashboards/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Stern/Desktop/8630462_Enosh_AGENT_MANGAER/Mvc/AgentClient/AgentClient/Views/Dashboards/TargetStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xUYXJnZXRTdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Stern/Desktop/8630462_Enosh_AGENT_MANGAER/Mvc/AgentClient/AgentClient/Views/DetailsView/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWlsc1ZpZXdcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

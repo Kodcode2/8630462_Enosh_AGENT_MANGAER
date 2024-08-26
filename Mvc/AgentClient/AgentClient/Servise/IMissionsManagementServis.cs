@@ -3,9 +3,10 @@ using AgentClient.ViewModel;
 
 namespace AgentClient.Servise
 {
-    public interface IMissionsServis
+    public interface IMissionsManagementServis
     {
-        Task<List<MissionDto>?> GetAllMissionsFormServerAsync();
+        Task<List<AgentDto>?> GetAllAgentsFormServerAsync();
+        Task<List<TargetsDto>?> GetAllTargetsFormServerAsync();
         Task<List<MissionsManagementVM>?> CreateListMissionsManagementVM();
         Task<bool> StatusChangeById(int id, string status);
     }

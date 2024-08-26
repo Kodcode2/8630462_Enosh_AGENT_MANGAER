@@ -6,12 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient(); // Added Http Client
-builder.Services.AddScoped<IAgentServis, AgentServis>(); // to add servis
-builder.Services.AddScoped<IMissionsServis, MissionsServis>(); // to add servis
-builder.Services.AddScoped<ITargetServis, TargetServis>(); // to add servis
+
+builder.Services.AddScoped<IDetailsViewServis, DetailsViewServis>(); // to add servis
+builder.Services.AddScoped<IMissionsManagementServis, MissionsManagementServis>(); // to add servis
+builder.Services.AddScoped<IDashboardsServis, DashboardsServis>(); // to add servis
 
 // builder.Services.AddSingleton<Authentication>(); // AddSingleton -------------------
-
 
 var app = builder.Build();
 

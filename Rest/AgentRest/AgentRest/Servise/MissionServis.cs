@@ -46,6 +46,15 @@ namespace AgentRest.Servise
 
                     // Calculation of time according to Id.
                     missionIsExsist.TimeLeft = await CalculationOfTime(missionIsExsist.AgentId, missionIsExsist.TargetId);
+
+                    await context.SaveChangesAsync();
+
+                    // Deleting all remaining Missions because the agent already has a task
+                    var forDelete = context.Missions.Where(x => x.AgentId == agentIsExsist.Id && x.Status == MissionStatus.Proposal).ToList();
+                    foreach (var item in forDelete) 
+                    {
+                        context.Missions.Remove(item); 
+                    }
                 }
                 await context.SaveChangesAsync();
                 return missionIsExsist;

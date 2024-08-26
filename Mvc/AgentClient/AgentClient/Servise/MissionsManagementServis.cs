@@ -5,25 +5,41 @@ using System.Text.Json;
 
 namespace AgentClient.Servise
 {
-    public class MissionsServis(IHttpClientFactory clientFactory, IServiceProvider serviceProvider) : IMissionsServis
+    public class MissionsManagementServis(IHttpClientFactory clientFactory, IServiceProvider serviceProvider) : IMissionsManagementServis
     {
-        private IAgentServis agentService => serviceProvider.GetRequiredService<IAgentServis>();
-        private ITargetServis targetService => serviceProvider.GetRequiredService<ITargetServis>();
+        private IDetailsViewServis detailsViewServis => serviceProvider.GetRequiredService<IDetailsViewServis>();
 
         private readonly string baseUrl = "https://localhost:7220/";
 
-        public async Task<List<MissionDto>?> GetAllMissionsFormServerAsync()
+
+        public async Task<List<AgentDto>?> GetAllAgentsFormServerAsync()
         {
             var httpClient = clientFactory.CreateClient();
-            var result = await httpClient.GetAsync($"{baseUrl}Missions");
+            var result = await httpClient.GetAsync($"{baseUrl}Agents");
             if (result.IsSuccessStatusCode)
             {
                 var content = await result.Content.ReadAsStringAsync();
-                List<MissionDto>? missions = JsonSerializer.Deserialize<List<MissionDto>>(
+                List<AgentDto>? agents = JsonSerializer.Deserialize<List<AgentDto>>(
                     content,
                     new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }
                 );
-                return missions ?? null;
+                return agents ?? null;
+            }
+            return null;
+        }
+
+        public async Task<List<TargetsDto>?> GetAllTargetsFormServerAsync()
+        {
+            var httpClient = clientFactory.CreateClient();
+            var result = await httpClient.GetAsync($"{baseUrl}Targets");
+            if (result.IsSuccessStatusCode)
+            {
+                var content = await result.Content.ReadAsStringAsync();
+                List<TargetsDto>? targets = JsonSerializer.Deserialize<List<TargetsDto>>(
+                    content,
+                    new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }
+                );
+                return targets ?? null;
             }
             return null;
         }
@@ -31,9 +47,9 @@ namespace AgentClient.Servise
         // Creates a list of active tasks.
         public async Task<List<MissionsManagementVM>?> CreateListMissionsManagementVM()
         {
-            var allMissions = await GetAllMissionsFormServerAsync();
-            var allAgents = await agentService.GetAllAgentsFormServerAsync();
-            var allTargets = await targetService.GetAllTargetsFormServerAsync();
+            var allMissions = await detailsViewServis.GetAllMissionsFormServerAsync();
+            var allAgents = await GetAllAgentsFormServerAsync();
+            var allTargets = await GetAllTargetsFormServerAsync();
 
             if (allTargets == null || allAgents == null || allMissions == null)
                 return null;

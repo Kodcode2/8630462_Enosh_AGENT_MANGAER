@@ -1,0 +1,94 @@
+﻿@model IEnumerable<AgentClient.ViewModel.AgentVM>
+
+@{
+    ViewData["Title"] = "AgentStatus";
+}
+
+<h1>AgentStatus</h1>
+@Html.ActionLink("General", "General") |
+@Html.ActionLink("Target Status", "TargetStatus")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.locationX)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.locationY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MissionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeLeft)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountEliminations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="@item.Image" alt="Agent image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locationX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locationY)
+            </td>
+            <td>
+                    @if (item.MissionId == -1)
+                    {
+                        <p>not found Mission</p>
+                    }
+                    else
+                    {                      
+                        @Html.DisplayFor(modelItem => item.MissionId)
+                        @Html.ActionLink("Go to Mission", "Details", "DetailsView", new { id = item.MissionId })
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                    @if (item.MissionId == -1)
+                    {
+                        <p>not found Mission</p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.TimeLeft)
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountEliminations)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script>
+    setInterval(() => window.location.href = 'https://localhost:7014/Dashboards/AgentStatus', 3000)
+</script>

@@ -138,6 +138,11 @@ namespace AgentRest.Servise
                     if (existingTask != null)
                         context.Missions.Remove(existingTask);
                 }
+                var forDelete = context.Missions.Where(x => x.TargetId == target.Id && x.Status == MissionStatus.Proposal).ToList();
+                foreach (var item in forDelete)
+                {
+                    context.Missions.Remove(item);
+                }
             }
             // The return of the object (it is not really necessary but probably for future use).
             return agentModel;

@@ -5,11 +5,11 @@ using System.Text.Json;
 
 namespace AgentClient.Controllers
 {
-    public class MissionsManagementController(IMissionsServis missionsServis) : Controller
+    public class MissionsManagementController(IMissionsManagementServis missionsManagementServis) : Controller
     {
         public async Task<IActionResult> Index()
         {
-            var ListMissions = await missionsServis.CreateListMissionsManagementVM();
+            var ListMissions = await missionsManagementServis.CreateListMissionsManagementVM();
             if (ListMissions != null)
             {
                 return View(ListMissions);
@@ -19,10 +19,10 @@ namespace AgentClient.Controllers
 
         public async Task<IActionResult> StartTheMission(int id)
         {
-            var isChange = await missionsServis.StatusChangeById(id, "mitzvah");
+            var isChange = await missionsManagementServis.StatusChangeById(id, "mitzvah");
             if (isChange)
             {
-                return RedirectToAction("Index", "Missions");
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Home");
         }

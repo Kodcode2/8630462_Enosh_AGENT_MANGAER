@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgentClient.Controllers
 {
-    public class DetailsViewController(IMissionsServis missionsServis) : Controller
+    public class DetailsViewController(IDetailsViewServis detailsViewServis) : Controller
     {
         public async Task<IActionResult> Index()
         {
-            var IsAllMissions = await missionsServis.GetAllMissionsFormServerAsync();
+            var IsAllMissions = await detailsViewServis.GetAllMissionsFormServerAsync();
             if (IsAllMissions != null)
             {
                 return View(IsAllMissions);
@@ -17,7 +17,7 @@ namespace AgentClient.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var IsAllMissions = await missionsServis.GetAllMissionsFormServerAsync();
+            var IsAllMissions = await detailsViewServis.GetAllMissionsFormServerAsync();
             if (IsAllMissions != null)
             {
                 return View(IsAllMissions.FirstOrDefault(x => x.Id == id));

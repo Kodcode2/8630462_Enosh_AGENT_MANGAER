@@ -3,21 +3,22 @@ using System.Text.Json;
 
 namespace AgentClient.Servise
 {
-    public class TargetServis(IHttpClientFactory clientFactory) : ITargetServis
+    public class DetailsViewServis(IHttpClientFactory clientFactory) : IDetailsViewServis
     {
         private readonly string baseUrl = "https://localhost:7220/";
-        public async Task<List<TargetsDto>?> GetAllTargetsFormServerAsync()
+
+        public async Task<List<MissionDto>?> GetAllMissionsFormServerAsync()
         {
             var httpClient = clientFactory.CreateClient();
-            var result = await httpClient.GetAsync($"{baseUrl}Targets");
+            var result = await httpClient.GetAsync($"{baseUrl}Missions");
             if (result.IsSuccessStatusCode)
             {
                 var content = await result.Content.ReadAsStringAsync();
-                List<TargetsDto>? targets = JsonSerializer.Deserialize<List<TargetsDto>>(
+                List<MissionDto>? missions = JsonSerializer.Deserialize<List<MissionDto>>(
                     content,
                     new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }
                 );
-                return targets ?? null;
+                return missions ?? null;
             }
             return null;
         }
