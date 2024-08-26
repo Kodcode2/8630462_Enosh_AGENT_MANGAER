@@ -12,8 +12,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AgentRest.Servise
 {
-    public class AgentServis(ApplicationDbContext context) : IAgentServis
+    public class AgentServis(ApplicationDbContext context, IServiceProvider serviceProvider) : IAgentServis
     {
+        private IMissionServis missionService => serviceProvider.GetRequiredService<IMissionServis>();
+
         //private readonly object _lock = new object();
         //private Task ShmuelTask()
         //{
@@ -123,6 +125,7 @@ namespace AgentRest.Servise
                     {
                         AgentId = agentModel.Id,
                         TargetId = target.Id,
+                        TimeLeft = await missionService.CalculationOfTime(agentModel.Id, target.Id),
                         Status = MissionStatus.Proposal,
                     };
                     await context.Missions.AddAsync(newMission);

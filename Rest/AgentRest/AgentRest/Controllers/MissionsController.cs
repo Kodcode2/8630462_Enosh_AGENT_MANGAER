@@ -12,7 +12,7 @@ namespace AgentRest.Controllers
     {
         
         [HttpGet]
-        public async Task<ActionResult<List<MissionModel>>> GetAll([FromBody] TokenDto token) => Ok(await missionServis.GetAllMissionsAsync(token));
+        public async Task<ActionResult<List<MissionModel>>> GetAll() => Ok(await missionServis.GetAllMissionsAsync());
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

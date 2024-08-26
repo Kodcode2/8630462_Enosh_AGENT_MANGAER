@@ -8,7 +8,7 @@ namespace AgentRest.Servise
 {
     public class TargetServis(ApplicationDbContext context) : ITargetServis
     {
-        public async Task<List<TargetModel>> GetAllTargetsAsync(TokenDto token) =>
+        public async Task<List<TargetModel>> GetAllTargetsAsync() =>
             await context.Targets.ToListAsync();
 
         public async Task<ResIdDto?> CreateTargetAsync(TargetDto target)

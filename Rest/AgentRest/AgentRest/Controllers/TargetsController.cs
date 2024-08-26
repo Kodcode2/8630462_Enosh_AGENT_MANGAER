@@ -11,7 +11,7 @@ namespace AgentRest.Controllers
     public class TargetsController(ITargetServis targetServis) : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<List<TargetModel>>> GetAll([FromBody] TokenDto token) => Ok(await targetServis.GetAllTargetsAsync(token));
+        public async Task<ActionResult<List<TargetModel>>> GetAll() => Ok(await targetServis.GetAllTargetsAsync());
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]

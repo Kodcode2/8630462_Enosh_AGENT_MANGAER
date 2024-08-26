@@ -17,7 +17,7 @@ namespace AgentRest.Servise
 
 
 
-        public async Task<List<MissionModel>> GetAllMissionsAsync(TokenDto token) =>
+        public async Task<List<MissionModel>> GetAllMissionsAsync() =>
         await context.Missions.ToListAsync();
 
         public async Task<MissionModel> TaskUpdateStatus(int id, MissionDto mission)
@@ -28,7 +28,7 @@ namespace AgentRest.Servise
 
                 if (missionIsExsist == null)
                 {
-                    throw new Exception($"Agent with the {id} does not exist");
+                    throw new Exception($"mission with the {id} does not exist");
                 }
 
                 missionIsExsist.Status = mission.Status switch
@@ -100,7 +100,7 @@ namespace AgentRest.Servise
         }
 
         // Calculation of time according to Id.
-        private async Task<double> CalculationOfTime(int agentId, int targetId)
+        public async Task<double> CalculationOfTime(int agentId, int targetId)
         {
             var agentIsExsist = await context.Agents.FirstOrDefaultAsync(x => x.Id == agentId);
             var targetIsExsist = await context.Targets.FirstOrDefaultAsync(x => x.Id == targetId);
@@ -110,23 +110,6 @@ namespace AgentRest.Servise
                 .CalculationOperationTime(DistanceCalculation
                 .CalculateDistance(agentIsExsist.locationX, agentIsExsist.locationY, targetIsExsist.locationX, targetIsExsist.locationY));
         }
-
-
-        // Stopwatch function
-        //private async Task StopwatchToTimeLeft(MissionModel missionModel)
-        //{
-        //    var missionIsExsist = await context.Missions.FirstOrDefaultAsync(x => x.Id == missionModel.Id);
-        //    CancellationTokenSource cts = new();
-        //    using PeriodicTimer periodicTimer = new(TimeSpan.FromSeconds(5));
-        //    double tamp = missionIsExsist!.TimeLeft;
-
-        //    while (await periodicTimer.WaitForNextTickAsync(cts.Token) && tamp >= 0)
-        //    {
-        //        Console.WriteLine($"time left for the {missionModel.Id}: {tamp}");
-        //        tamp -= 0.0005;
-        //    }
-        //}
-
 
     }
 }

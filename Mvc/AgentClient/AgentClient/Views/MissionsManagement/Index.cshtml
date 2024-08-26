@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AgentClient.ViewModel.MissionsManagementVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MissionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentLocationX)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentLocationY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetLocationX)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetLocationY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeToEliminate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MissionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentLocationX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentLocationY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetLocationX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetLocationY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeToEliminate)
+            </td>
+            <td>
+                    @Html.ActionLink("Start the Mission", "StartTheMission", new { id = item.MissionId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
