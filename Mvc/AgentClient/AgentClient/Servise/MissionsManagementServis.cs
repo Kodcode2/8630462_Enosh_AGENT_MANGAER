@@ -11,7 +11,7 @@ namespace AgentClient.Servise
 
         private readonly string baseUrl = "https://localhost:7220/";
 
-
+        // Returns all Agents
         public async Task<List<AgentDto>?> GetAllAgentsFormServerAsync()
         {
             var httpClient = clientFactory.CreateClient();
@@ -28,6 +28,7 @@ namespace AgentClient.Servise
             return null;
         }
 
+        // Returns all Targets
         public async Task<List<TargetsDto>?> GetAllTargetsFormServerAsync()
         {
             var httpClient = clientFactory.CreateClient();
@@ -44,7 +45,7 @@ namespace AgentClient.Servise
             return null;
         }
 
-        // Creates a list of active tasks.
+        // Creates a list of active Missions.
         public async Task<List<MissionsManagementVM>?> CreateListMissionsManagementVM()
         {
             var allMissions = await detailsViewServis.GetAllMissionsFormServerAsync();
@@ -72,6 +73,8 @@ namespace AgentClient.Servise
 
             return vM;
         }
+
+        // Changes the status and returns bool if changed
         public async Task<bool> StatusChangeById(int id, string status)
         {
             var httpClient = clientFactory.CreateClient();

@@ -1,0 +1,16 @@
+﻿<table border="1">
+    <tr>
+        <td></td>
+        @foreach (int y in Enumerable.Range(1, 100))
+        {
+            <td>@y</td>
+        }
+    </tr>
+    @foreach (int x in Enumerable.Range(1, 100))
+    {
+        <tr>
+            <td>@x</td>
+            
+        </tr>
+    }
+</table>

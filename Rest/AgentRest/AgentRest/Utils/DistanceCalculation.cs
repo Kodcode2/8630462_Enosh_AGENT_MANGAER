@@ -26,7 +26,6 @@
                 _ => string.Empty
             };
 
-
             return $"{yDirectin}{xDirectin}";
         }
 

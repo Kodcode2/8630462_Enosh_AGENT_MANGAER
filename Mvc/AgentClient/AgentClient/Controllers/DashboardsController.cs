@@ -36,5 +36,12 @@ namespace AgentClient.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult Mtrix()
+        {
+            
+                return View();
+            
+        }
     }
 }

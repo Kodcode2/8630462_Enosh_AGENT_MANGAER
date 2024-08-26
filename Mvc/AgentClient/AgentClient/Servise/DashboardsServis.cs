@@ -9,6 +9,8 @@ namespace AgentClient.Servise
     {
 
         private readonly string baseUrl = "https://localhost:7220/";
+
+        // Returns all agents
         public async Task<List<AgentDto>?> GetAllAgentsFormServerAsync()
         {
             var httpClient = clientFactory.CreateClient();
@@ -25,6 +27,7 @@ namespace AgentClient.Servise
             return null;
         }
 
+        // Returns all targets
         public async Task<List<TargetsDto>?> GetAllTargetsFormServerAsync()
         {
             var httpClient = clientFactory.CreateClient();
@@ -51,26 +54,33 @@ namespace AgentClient.Servise
             GeneralInformationVM generalInformationVM = new GeneralInformationVM()
             {
                 AmountAgents = allAgents.Count(),
+
+                // Returns the amount of Operations agents
                 AmountAgentsActivity = allAgents.Where(x => x.Status == AgentStatus.Operations).Count(),
 
                 AmountTargets = allTargets.Count(),
+                // Returns the amount of Destroyed Targets
                 AmountTargetsEliminated = allTargets.Where(x => x.Status == TargetStatus.Destroyed).Count(),
 
                 AmountMissions = allMissions.Count(),
+                // Returns the amount of Mitzvah Missions
                 AmountMissionsActivity = allMissions.Where(x => x.Status == Dto.MissionStatus.Mitzvah).Count(),
 
+                // Restores the relationship between agents and targets
                 RelationAgentsTargets = allAgents.Count() / allTargets.Count(),
+
+                // Returns the ratio of dormant agents to living targets
                 RelationAgentsTargetsTeamable = allAgents.Where(x => x.Status == AgentStatus.Dormant).Count() 
                 / allTargets.Where(x => x.Status == TargetStatus.Alive).Count(),
             };
             return generalInformationVM;
         }
-        
+
+        // creator list of AgentVM
         public async Task<List<AgentVM>> AgentDetails()
         {
             var allMissions = await detailsViewServis.GetAllMissionsFormServerAsync();
             var allAgents = await GetAllAgentsFormServerAsync();
-            var allTargets = await GetAllTargetsFormServerAsync();
 
             if (allMissions == null || allAgents == null)
                 return [];
@@ -82,16 +92,18 @@ namespace AgentClient.Servise
                 Image = x.Image,
                 locationX = x.locationX,
                 locationY = x.locationY,
+                // If an existing Mission gets the ID and if not gets -1
                 MissionId = allMissions.Any(m => m.AgentId == x.Id && m.Status == Dto.MissionStatus.Mitzvah) ? allMissions.FirstOrDefault(m => m.AgentId == x.Id)!.Id : -1,
                 Status = x.Status,
+                // If an existing Mission gets the TimeLeft and if not gets -1
                 TimeLeft = allMissions.Any(m => m.AgentId == x.Id && m.Status == Dto.MissionStatus.Mitzvah) ? allMissions.FirstOrDefault(m => m.AgentId == x.Id)!.TimeLeft : -1,
                 AmountEliminations = allMissions.Where(x => x.Status == Dto.MissionStatus.Ended).Count(),
             }).ToList();
 
-
             return ListVM;
         }
 
+        // creator list of TargetVM
         public async Task<List<TargetVM>> TargetDetails()
         {
             

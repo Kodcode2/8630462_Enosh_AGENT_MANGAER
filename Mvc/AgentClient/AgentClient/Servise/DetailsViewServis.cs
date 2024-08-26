@@ -7,6 +7,7 @@ namespace AgentClient.Servise
     {
         private readonly string baseUrl = "https://localhost:7220/";
 
+        // Returns all Missions
         public async Task<List<MissionDto>?> GetAllMissionsFormServerAsync()
         {
             var httpClient = clientFactory.CreateClient();

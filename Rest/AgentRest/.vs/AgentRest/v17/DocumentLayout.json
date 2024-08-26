@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\servise\\targetservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\servise\\targetservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\controllers\\targetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\controllers\\targetscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\servise\\missionservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\servise\\missionservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,8 +11,8 @@
       "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\servise\\agentservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\servise\\itargetservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\servise\\itargetservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|c:\\users\\stern\\desktop\\8630462_enosh_agent_mangaer\\rest\\agentrest\\agentrest\\servise\\targetservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0423161F-1A57-4DDA-83FF-AD6E93FF62B6}|AgentRest\\AgentRest.csproj|solutionrelative:agentrest\\servise\\targetservis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 264,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,13 +34,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "MissionServis.cs",
+              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\MissionServis.cs",
+              "RelativeDocumentMoniker": "AgentRest\\Servise\\MissionServis.cs",
+              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\MissionServis.cs",
+              "RelativeToolTip": "AgentRest\\Servise\\MissionServis.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T15:58:34.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AgentServis.cs",
               "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\AgentServis.cs",
               "RelativeDocumentMoniker": "AgentRest\\Servise\\AgentServis.cs",
               "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\AgentServis.cs",
               "RelativeToolTip": "AgentRest\\Servise\\AgentServis.cs",
-              "ViewState": "AQIAAI8AAAAAAAAAAAAswIYAAAAUAAAA",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAswJ4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-26T14:29:50.947Z",
               "EditorCaption": ""
@@ -56,50 +61,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MissionServis.cs",
-              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\MissionServis.cs",
-              "RelativeDocumentMoniker": "AgentRest\\Servise\\MissionServis.cs",
-              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\MissionServis.cs",
-              "RelativeToolTip": "AgentRest\\Servise\\MissionServis.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAowFoAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T09:08:37.128Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TargetsController.cs",
-              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Controllers\\TargetsController.cs",
-              "RelativeDocumentMoniker": "AgentRest\\Controllers\\TargetsController.cs",
-              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Controllers\\TargetsController.cs",
-              "RelativeToolTip": "AgentRest\\Controllers\\TargetsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T08:58:54.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ITargetServis.cs",
-              "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\ITargetServis.cs",
-              "RelativeDocumentMoniker": "AgentRest\\Servise\\ITargetServis.cs",
-              "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\ITargetServis.cs",
-              "RelativeToolTip": "AgentRest\\Servise\\ITargetServis.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T08:58:37.149Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "TargetServis.cs",
               "DocumentMoniker": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\TargetServis.cs",
               "RelativeDocumentMoniker": "AgentRest\\Servise\\TargetServis.cs",
               "ToolTip": "C:\\Users\\Stern\\Desktop\\8630462_Enosh_AGENT_MANGAER\\Rest\\AgentRest\\AgentRest\\Servise\\TargetServis.cs",
               "RelativeToolTip": "AgentRest\\Servise\\TargetServis.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAAowHoAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADkAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-26T08:58:36.171Z",
               "EditorCaption": ""

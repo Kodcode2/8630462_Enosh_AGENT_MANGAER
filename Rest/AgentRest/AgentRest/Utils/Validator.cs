@@ -2,6 +2,7 @@
 
 namespace AgentRest.Utils
 {
+    // to catch a list of errors
     public class Validator<T>
     {
         private readonly T _value;

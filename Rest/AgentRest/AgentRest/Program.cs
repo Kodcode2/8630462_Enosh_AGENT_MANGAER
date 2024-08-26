@@ -15,9 +15,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAgentServis, AgentServis>(); // to add servis
 builder.Services.AddScoped<ITargetServis, TargetServis>(); // to add servis
 builder.Services.AddScoped<IMissionServis, MissionServis>(); // to add servis
- 
-//builder.Services.AddSingleton<Authentication>(); // AddSingleton -------------------
-
 
 // for the Connection String
 builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
