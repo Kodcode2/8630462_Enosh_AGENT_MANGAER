@@ -16,14 +16,6 @@ namespace AgentRest.Servise
     {
         private IMissionServis missionService => serviceProvider.GetRequiredService<IMissionServis>();
 
-        //private readonly object _lock = new object();
-        //private Task ShmuelTask()
-        //{
-        //    lock (_lock)
-        //    {
-
-        //    }
-        //}
         public async Task<List<AgentModel>> GetAllAgentsAsync() =>
            await context.Agents.ToListAsync();
 

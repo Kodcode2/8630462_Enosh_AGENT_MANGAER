@@ -27,9 +27,7 @@ namespace AgentRest.Servise
                 var missionIsExsist = await context.Missions.FirstOrDefaultAsync(x => x.Id == id);
 
                 if (missionIsExsist == null)
-                {
                     throw new Exception($"mission with the {id} does not exist");
-                }
 
                 missionIsExsist.Status = mission.Status switch
                 {
@@ -38,6 +36,7 @@ namespace AgentRest.Servise
                     "ended" => MissionStatus.Ended,
                     _ => throw new Exception($"Invalid value {mission.Status}")
                 };
+
                 if (missionIsExsist.Status == MissionStatus.Mitzvah)
                 {
                     // change status of agent.
@@ -51,10 +50,8 @@ namespace AgentRest.Servise
 
                     // Deleting all remaining Missions because the agent already has a task
                     var forDelete = context.Missions.Where(x => x.AgentId == agentIsExsist.Id && x.Status == MissionStatus.Proposal).ToList();
-                    foreach (var item in forDelete) 
-                    {
-                        context.Missions.Remove(item); 
-                    }
+                    context.Missions.RemoveRange(forDelete); 
+                    
                 }
                 await context.SaveChangesAsync();
                 return missionIsExsist;
